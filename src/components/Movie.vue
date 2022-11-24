@@ -63,7 +63,7 @@ const getMovie = () => {
 
 <template>
   <div class="form-container">
-      <label for="Movie">Choose a movie:</label>
+      <label id="Movie">Choose a movie:</label>
       <select class="selector" name="Movies" id="movie-options" v-model="movie">
         <option value="791373">Zack Snyder's Justice League</option>
         <option value="27205">Inception</option>
@@ -134,5 +134,42 @@ const getMovie = () => {
   font-family: "Kanit", "Rubik", "Roboto Condensed", sans-serif;
   color: red;
 }
+ .form-container {
+  align-items: center;
+  left: 25%;
+  top:-100px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+  border-style: solid;
+  border-width: 5px;
+  border-color: red;
+  background-color:black;
+  padding-top: 110px;
+  padding-bottom: 20px;
+  border-radius: 50px;
+  width: 50%
+ }
+ #Movie {
+  color: white;
+padding: .5%;
+border-radius: 20px;
+ }
+ .selector, option {
+  color: white;
+  background-color: red;
+  border-radius: 20px;
+  padding: 1%;
+ }
+
+.get-button {
+  color: white;
+background-color: red;
+border-radius: 20px;
+padding: .25%;
+}
+
+
 
 </style>
