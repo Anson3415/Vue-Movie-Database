@@ -134,11 +134,16 @@ const getMovie = () => {
   font-family: "Kanit", "Rubik", "Roboto Condensed", sans-serif;
   color: red;
 }
+
+#app {
+  padding: 0px;
+}
+
  .form-container {
   align-items: center;
   left: 25%;
   top:-100px;
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
   gap: .5rem;

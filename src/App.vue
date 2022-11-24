@@ -5,10 +5,13 @@ import Movie from './components/Movie.vue';
 </script>
 
 <template>
-  <movie></movie>
+  <movie style="padding: 0px;"></movie>
 </template>
 
 <style scoped>
+#app {
+  padding: 0px;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
