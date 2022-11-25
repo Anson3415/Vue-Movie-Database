@@ -18,10 +18,15 @@ const revenue = ref(null);
 const budget = ref(null);
 const genres = ref(null);
 const apiKey = "0b1c758bd817d852620ef1f545ca218c";
+const start = ref(null);
+const start2 = ref(null);
+const start1 = ref(null);
+
 
 const getMovie = () => {
-  let black = document.querySelector(".border");
-  black.style.zIndex = "-3";
+  start.value = start.value.style.zIndex = "-3";
+  start2.value = start2.value.style.zIndex = "-3";
+  start1.value = start1.value.style.zIndex = "-3";
   movieData.value = (
     axios.get(`https://api.themoviedb.org/3/movie/${movie.value}`,
       {
@@ -78,17 +83,17 @@ const getMovie = () => {
       <option value="436969">The Suicide Squad</option>
       <option value="299534">Avengers: Endgame</option>
     </select>
-    <input class="get-button" type="button" value="Get Movie" @click="getMovie"/>
+    <input class="get-button" type="button" value="Get Movie" @click="getMovie" />
   </div>
-  <!-- <h1 class="intro">
+  <h1 class="intro" ref ="start2">
     Start by choosing a movie and pressing the button to get information of
     the movie
   </h1>
-  <p class="introPara">Welcome to the top 10 movies of all times</p>-->
-  <div class="border"></div>
-  <h1 class="title">{{title}}</h1>
+  <p class="introPara" ref="start1">Welcome to the top 10 movies of all times</p>
+  <div class="border" ref="start"></div>
+  <h1 class="title">{{ title }}</h1>
   <div class="outer-container">
-    <div class="infobox" >
+    <div class="infobox">
       <h3>Average Rating:</h3>
       <h5>{{ average }}/10</h5>
       <br>
@@ -136,18 +141,35 @@ const getMovie = () => {
   font-family: "Kanit", "Rubik", "Roboto Condensed", sans-serif;
   color: red;
 }
+
+.intro {
+  position: absolute;
+  top:70px;
+  left:150px;
+  z-index: 1;
+}
+
+.introPara {
+  text-align: center;
+  position: absolute;
+  left:20px;
+  top:50px;
+  z-index: 1;
+}
+
 .border {
   position: fixed;
-  top:.5%;
-  left:.5%;
+  top: .5%;
+  left: .5%;
   background-color: black;
-  z-index:0;
+  z-index: 0;
   height: 98%;
   width: 99%;
   border-style: solid;
   box-shadow: 0px 0px 0px 5px red;
   border-radius: 25px;
 }
+
 .form-container {
   align-items: center;
   left: 33%;
@@ -165,7 +187,7 @@ const getMovie = () => {
   padding-bottom: 10px;
   border-radius: 50px;
   width: 33%;
-  z-index: 1;
+  z-index: 2;
 }
 
 #Movie {
@@ -195,21 +217,24 @@ option {
   grid-template-rows: [row1-start] 450px [row1-end] 200px [last-line];
   z-index: -1;
 }
+
 .title {
   margin-top: 75px;
   display: block;
   text-align: center;
 }
+
 .image {
   height: 98%;
   width: 99%;
   position: fixed;
-  left:.5%;
-  top:1%;
+  left: .5%;
+  top: 1%;
   z-index: -2;
   filter: brightness(50%) grayscale(100%) opacity(50%);
   border-radius: 25px;
 }
+
 .infobox {
   grid-column: 4/span 1;
   grid-row: 1 /span 1;
@@ -245,10 +270,11 @@ option {
 }
 
 h3 {
-  font-family:Rubik;
+  font-family: Rubik;
 }
 
-h4, h5 {
+h4,
+h5 {
   font-family: Sono;
 }
 
