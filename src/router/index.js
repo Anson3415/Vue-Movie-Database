@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
-import Account from "../views/Account.vue";
+import Hero from "../views/Hero.vue";
 
 const routes = [
   {
@@ -8,8 +8,8 @@ const routes = [
     component: Home
   },
   {
-    path: '/account',
-    component: Account
+    path: '/hero',
+    component: Hero
   },
 ];
 

@@ -1,7 +1,9 @@
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
+import{ useRouter } from "vue-router";
 
+const router = useRouter();
 const movie = ref(null);
 const movieData = ref(null);
 const title = ref(null);
@@ -24,6 +26,7 @@ const start1 = ref(null);
 
 
 const getMovie = () => {
+  router.push("./hero")
   start.value = start.value.style.zIndex = "-3";
   start2.value = start2.value.style.zIndex = "-3";
   start1.value = start1.value.style.zIndex = "-3";
