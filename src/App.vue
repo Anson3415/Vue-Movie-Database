@@ -1,21 +1,24 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 </script>
 
 <template>
-  <!-- <movie style="padding: 0px;"></movie> -->
   <div class="app-container">
     <RouterView/>
   </div>
 </template>
 
 <style scoped>
-#app {
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Raleway&family=Roboto+Mono&family=Ubuntu&display=swap');
+
+* {
+  font-family: 'Poppins', 'Raleway', 'Roboto Mono', 'Ubuntu';
   padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
 }
-.app-containder {
-  width: 100vw;
-  height: 100vh;
+
+.app-container {
+  width: 100%;
+  height: 100%;
 }
 </style>
