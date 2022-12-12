@@ -13,14 +13,15 @@ img {
     opacity: 70%;
     user-select: none;
     -webkit-user-drag: none;
-    filter: blur(3px);
+    filter: blur(0px) contrast(110%) brightness(130%);
 }
 
 h1 {
+    filter: contrast(110%) brightness(130%);
     text-shadow: 4px 4px 3px rgb(13, 73, 76);
+    color: rgb(177, 210, 59);
     user-select: none;
     -webkit-user-drag: none;
-    color: rgb(177, 210, 59);
     height: 10vh;
     width: 1%;
     text-align: center;

@@ -3,14 +3,15 @@ import Hero from "../components/Hero.vue";
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
 import LoginBox from "../components/LoginBox.vue";
-
 </script>
 
 <template>
   <div class="home-container">
     <Header></Header>
-    <Hero />
+    <Suspense>
     <LoginBox></LoginBox>
+</Suspense>
+    <Hero/>
     <Footer></Footer>
   </div>
 </template>

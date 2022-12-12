@@ -45,7 +45,7 @@
     -webkit-user-drag: none;
 }
 .container {
-    opacity: 70%;
+    opacity: 80%;
     height: 200px;
     width: 100%;
     box-shadow: inset 0px 120px 200px rgb(175, 199, 91);
@@ -55,13 +55,7 @@
     gap: 1%;
     grid-template-columns: [first] 24% [line2] 24% [line3] 24% [line4] 24% [end];
     grid-template-rows: [row1-start] 29% [row1-end] 29% [third-line] 29% [fourth-line] 10%[last-line];
-}
-
-template {
-    height: 100px;
-    width: 100%;
-    z-index: 1;
-
+    filter: contrast(110%) brightness(130%);
 }
 
 .image {
@@ -88,7 +82,6 @@ h1 {
 
 .logo {
     height: 100px;
-    filter: brightness(0);
 }
 
 .copyright {

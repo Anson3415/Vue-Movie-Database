@@ -41,6 +41,7 @@ img {
 }
 
 .navbar {
+    filter: contrast(110%) brightness(130%);
     align-items: center;
     display: flex;
     background-color: rgba(0, 0, 0, 0.593);
@@ -51,9 +52,8 @@ img {
     box-shadow: 0px 1px 10px 5px rgb(225, 255, 116);
     position: fixed;
     top: -5%;
-    z-index: 1;
+    z-index: 3;
     border-radius: 25px;
-    z-index: 1;
 }
 
 template {
