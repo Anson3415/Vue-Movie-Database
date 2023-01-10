@@ -1,6 +1,13 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { ref } from "vue";
+const props = defineProps({
+    prop: String,
+    prop2: String,
+
+});
+let newCss = props.prop;
+let anotherProp = props.prop2;
 const router = useRouter()
 
 const toHome = () => {
@@ -12,35 +19,28 @@ const redirect = () => {
 const toCheckout = () => {
     router.push("./checkout")
 }
-const loginBtn = ref()
-const shoppingBtn = ref()
-const counter = ref()
-if (router.path === "./store") {
-    shoppingBtn.value.display = "inline"
-    counter.value.display = "inline"
-    console.log("passed")
+const backToStore = () => {
+    router.push("./store")
 }
-if (router.path === "./")  {
-    loginBtn.value.display = "inline"
-    console.log("passed2")
-}
+
 </script>
 
 <template>
     <div class="navbar">
         <img class="homeImg" src="\src\assets\pngtree-neon-camera-yellow-line-camera-icon-png-image_6840510.png" />
-        <h1 @click = "toHome()">9movies</h1>
-        <input type="button" value="Login" @click="redirect()" ref="loginBtn" />
-        <img class="shoppingCart" src="src\assets\yellow-shopping-cart-10905.png" @click="toCheckout()"
-            ref="shoppingBtn" />
-        <h5 ref="counter" class="counter">0</h5>
+        <h1 @click="toHome()">9movies</h1>
+        <input type="button" value="Login" @click="redirect()" />
+        <button @click="backToStore()" class = "back" :class = "anotherProp">Continue Shopping</button>
+        <img class="shoppingCart" :class="newCss" src="src\assets\yellow-shopping-cart-10905.png" @click="toCheckout()" />
+        <h5 class="counter" :class="newCss">0</h5>
     </div>
 </template>
 
 <style scoped>
- * {
+* {
     margin: 0px;
- }
+}
+
 h1 {
     font-size: 36px;
     font-family: 'Roboto Mono';
@@ -115,6 +115,7 @@ input:hover {
     left: 80%;
     user-select: none;
     -webkit-user-drag: none;
+    display: none;
 }
 
 .counter {
@@ -123,5 +124,17 @@ input:hover {
     left: 85%;
     user-select: none;
     -webkit-user-drag: none;
-    }
+    display: none;
+}
+.back {
+    background-color: blue;
+    position: absolute;
+    left: 75%;
+    top: 50%;
+    display: none;
+   
+}
+.show {
+    display: inline !important;
+}
 </style>

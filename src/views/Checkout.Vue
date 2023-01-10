@@ -6,7 +6,7 @@ import Footer from "../components/Footer.vue";
 
 <template>
   <div class="home-container">
-    <Header></Header>
+    <Header prop2 = "show"></Header>
     <CheckoutBox/>
     <Footer></Footer>
   </div>

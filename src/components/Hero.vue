@@ -16,7 +16,7 @@ let idclass = props.id;
 
 <style scoped>
 img {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     opacity: 70%;
     user-select: none;
@@ -28,6 +28,7 @@ h1 {
     filter: contrast(110%) brightness(130%);
     text-shadow: 4px 4px 3px rgb(13, 73, 76);
     color: rgb(177, 210, 59);
+    font-size:28px;
     user-select: none;
     -webkit-user-drag: none;
     height: 10vh;
@@ -35,7 +36,7 @@ h1 {
     text-align: center;
     position: absolute;
     z-index: 1;
-    top: 36%;
+    top: 31%;
     left: 46%;
 }
 

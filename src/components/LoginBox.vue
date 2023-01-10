@@ -37,7 +37,7 @@ const login = () => {
  }
 .home-container {
   position: absolute ;
-  top: 40%;
+  top: 30%;
   left: 37.5%;
   display: flex;
   flex-direction: column;

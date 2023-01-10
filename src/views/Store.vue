@@ -26,8 +26,14 @@ function closeModal() {
     console.log("close")
 }
 function addToCart() {
-    theTitles.push(movieData.value[3])
-    thePoster.push(movieData.value[0])
+    for (let i = -1; i < theTitles.length; i++) {
+        if (movieData.value[3] != theTitles[i] ) {
+            console.log("here")
+            console.log(movieData.value[3])
+            theTitles.push(movieData.value[3])
+            thePoster.push(movieData.value[0])
+        }
+    }
 
 }
 function getDetails(value) {
@@ -83,7 +89,7 @@ function getDetails(value) {
 
 <template >
     <div class="home-container">
-        <Header class="storebkg">
+        <Header class="storebkg" prop="show">
         </Header>
         <Hero class="store" id="gray" />
         <h1>Trending</h1>
@@ -96,8 +102,8 @@ function getDetails(value) {
         <div class="modalContainer" ref="modalIn">
 
             <img src="\src\assets\482185-200.png" @click="getDetails()" />
-            <button @click="addToCart()">Add movie</button>
-            <h1 class="title">{{ title }}</h1>
+            <button @click="addToCart()">Add To Cart</button>
+            <h1 class="title">{{ movieData[3] }}</h1>
             <img class="modalImage" :src="movieData[0]" onerror="this.style.display='none'" />
             <iframe class="trailer" :src="movieData[1]" onerror="this.style.display='none'"></iframe>
             <img :src="movieData[2]" class="backdrop" onerror="this.style.display='none'">
@@ -218,6 +224,7 @@ h1 {
     background-color: black;
     opacity: 80%;
 }
+
 .backdrop {
     height: 100%;
     width: 100%;
@@ -226,7 +233,10 @@ h1 {
     top: 0%;
     left: 0%;
 }
-h5,h3,h4 {
+
+h5,
+h3,
+h4 {
     background-color: white;
 }
 </style>
