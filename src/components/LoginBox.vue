@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-
 const router = useRouter();
 const username = ref("");
 const password = ref("");
@@ -13,6 +12,7 @@ const login = () => {
   } else {
     error.value = true;
   }
+  
 };
 </script>
 
@@ -31,6 +31,10 @@ const login = () => {
 </template>
 
 <style scoped>
+ *{
+  user-select: none;
+    -webkit-user-drag: none;
+ }
 .home-container {
   position: absolute ;
   top: 40%;
@@ -43,7 +47,7 @@ const login = () => {
   background-color: rgb(13, 73, 76);
   border-radius: 25px;
   align-items: center;
-  box-shadow: 0px 1px 10px 5px rgb(225, 255, 116);
+  box-shadow: 0px 1px 10px 5px rgb(177, 210, 59);
 }
 h1 {
   color: rgb(177, 210, 59);
@@ -66,9 +70,23 @@ p {
   padding-top: 1%;
   padding-bottom: 1%;
   font-weight: 600;
-  font-family: ;
+  border-style: solid;
+  border-color: rgb(177, 210, 59);
+
+}
+
+.login-button:hover {
+  background-color:rgb(13, 73, 76) ;
+  color: rgb(177, 210, 59);
+  border-style: solid;
+  border-color: rgb(177, 210, 59);
 }
 input {
   color:rgb(13, 73, 76);
 }
+::placeholder {
+  color: rgb(31, 110, 114);
+  opacity: .7;
+}
+
 </style>

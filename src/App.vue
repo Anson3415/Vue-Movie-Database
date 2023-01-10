@@ -3,7 +3,10 @@
 
 <template>
   <div class="app-container">
+    <Suspense>
     <RouterView/>
+  </Suspense>
+  
   </div>
 </template>
 

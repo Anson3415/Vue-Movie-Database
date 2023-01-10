@@ -1,15 +1,13 @@
 <script setup>
-import Hero from "../components/Hero.vue";
+import CheckoutBox from "../components/CheckoutBox.vue";
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
-import LoginBox from "../components/LoginBox.vue";
 </script>
 
 <template>
   <div class="home-container">
     <Header></Header>
-    <LoginBox></LoginBox>
-    <Hero/>
+    <CheckoutBox/>
     <Footer></Footer>
   </div>
 </template>

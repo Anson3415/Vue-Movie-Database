@@ -1,9 +1,17 @@
 <script setup>
+const props = defineProps({
+    class: String,
+    id: String,
+
+});
+
+let elementClass = props.class;
+let idclass = props.id;
 </script>
 
 <template>
-    <img src="\src\assets\497286.jpg"/>
-    <h1>All Your Favourite Movies All In One Place</h1>
+    <img :class ="idclass" src="\src\assets\497286.jpg" />
+    <h1 :class="elementClass" >All Your Favourite Movies All In One Place</h1>
 </template>
 
 <style scoped>
@@ -29,5 +37,13 @@ h1 {
     z-index: 1;
     top: 36%;
     left: 46%;
+}
+
+.store{
+    display: none;
+
+}
+.gray {
+    filter: brightness(50%);
 }
 </style>

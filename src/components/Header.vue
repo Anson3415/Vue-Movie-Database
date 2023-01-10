@@ -1,36 +1,60 @@
 <script setup>
 import { useRouter } from "vue-router";
-
+import { ref } from "vue";
 const router = useRouter()
 
+const toHome = () => {
+    router.push("./")
+}
 const redirect = () => {
     router.push("./login");
+}
+const toCheckout = () => {
+    router.push("./checkout")
+}
+const loginBtn = ref()
+const shoppingBtn = ref()
+const counter = ref()
+if (router.path === "./store") {
+    shoppingBtn.value.display = "inline"
+    counter.value.display = "inline"
+    console.log("passed")
+}
+if (router.path === "./")  {
+    loginBtn.value.display = "inline"
+    console.log("passed2")
 }
 </script>
 
 <template>
     <div class="navbar">
-        <img src="\src\assets\pngtree-neon-camera-yellow-line-camera-icon-png-image_6840510.png" />
-        <h1>9movies</h1>
-        <input type="button" value="Login" @click = "redirect()"/>
+        <img class="homeImg" src="\src\assets\pngtree-neon-camera-yellow-line-camera-icon-png-image_6840510.png" />
+        <h1 @click = "toHome()">9movies</h1>
+        <input type="button" value="Login" @click="redirect()" ref="loginBtn" />
+        <img class="shoppingCart" src="src\assets\yellow-shopping-cart-10905.png" @click="toCheckout()"
+            ref="shoppingBtn" />
+        <h5 ref="counter" class="counter">0</h5>
     </div>
 </template>
 
 <style scoped>
+ * {
+    margin: 0px;
+ }
 h1 {
     font-size: 36px;
     font-family: 'Roboto Mono';
-    color: rgb(204, 235, 94);
+    color: rgb(177, 210, 59);
     margin-left: -60%;
-    margin-top: 10%;
-    height: 100%;
+    margin-top: 5%;
+    height: 50%;
     width: 20%;
     z-index: 1;
     user-select: none;
     -webkit-user-drag: none;
 }
 
-img {
+.homeImg {
     margin-top: 2%;
     height: 100%;
     width: 10%;
@@ -49,7 +73,7 @@ img {
     height: 20%;
     width: 100%;
     gap: 60%;
-    box-shadow: 0px 1px 10px 5px rgb(225, 255, 116);
+    box-shadow: 0px 1px 10px 5px rgb(177, 210, 59);
     position: fixed;
     top: -5%;
     z-index: 3;
@@ -69,8 +93,8 @@ input {
     border-radius: 10px;
     font-family: 'Ubuntu', 'Roboto Mono';
     background-color: rgba(0, 0, 0, 0.644);
-    border-color: rgb(225, 255, 116);
-    color: rgb(225, 255, 116);
+    border-color: rgb(177, 210, 59);
+    color: rgb(177, 210, 59);
     font-weight: 600;
     font-size: 18px;
 }
@@ -83,4 +107,21 @@ input:hover {
     font-size: 19px;
 
 }
+
+.shoppingCart {
+    height: 50%;
+    position: absolute;
+    top: 35%;
+    left: 80%;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.counter {
+    color: rgb(177, 210, 59);
+    position: absolute;
+    left: 85%;
+    user-select: none;
+    -webkit-user-drag: none;
+    }
 </style>
