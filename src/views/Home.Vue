@@ -16,6 +16,5 @@ import Footer from "../components/Footer.vue";
 .home-container {
   display: flex;
   flex-direction: column;
-
 }
 </style>

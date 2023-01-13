@@ -1,6 +1,10 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { ref } from "vue";
+import { useStore } from "../store/index.js";
+const store = useStore();
+const number = ref(0)
+number.value = store.titles.length
 const props = defineProps({
     prop: String,
     prop2: String,
@@ -30,9 +34,10 @@ const backToStore = () => {
         <img class="homeImg" src="\src\assets\pngtree-neon-camera-yellow-line-camera-icon-png-image_6840510.png" />
         <h1 @click="toHome()">9movies</h1>
         <input type="button" value="Login" @click="redirect()" />
-        <button @click="backToStore()" class = "back" :class = "anotherProp">Continue Shopping</button>
-        <img class="shoppingCart" :class="newCss" src="src\assets\yellow-shopping-cart-10905.png" @click="toCheckout()" />
-        <h5 class="counter" :class="newCss">0</h5>
+        <button @click="backToStore()" class="back" :class="anotherProp">Continue Shopping</button>
+        <img class="shoppingCart" :class="newCss" src="src\assets\yellow-shopping-cart-10905.png"
+            @click="toCheckout()" />
+        <h5 class="counter" :class="newCss">{{ number }}</h5>
     </div>
 </template>
 
@@ -126,14 +131,32 @@ input:hover {
     -webkit-user-drag: none;
     display: none;
 }
+
 .back {
-    background-color: blue;
     position: absolute;
-    left: 75%;
-    top: 50%;
+    left: 80%;
+    top: 45%;
+    height: 30%;
+    width: 7%;
+    border-radius: 10px;
+    font-family: 'Ubuntu', 'Roboto Mono';
+    background-color: rgba(0, 0, 0, 0.644);
+    border-color: rgb(177, 210, 59);
+    color: rgb(177, 210, 59);
+    font-weight: 600;
+    font-size: 16px;
     display: none;
-   
+
 }
+
+.back:hover {
+    background-color: rgb(8, 43, 44);
+    height: 32%;
+    width: 8%;
+    left: 79.5%;
+    font-size: 19px;
+}
+
 .show {
     display: inline !important;
 }

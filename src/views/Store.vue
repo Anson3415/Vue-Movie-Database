@@ -4,12 +4,20 @@ import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
 import { useStore } from "../store/index.js";
 import axios from 'axios';
-import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { nextTick, ref } from 'vue';
+const renderComponent = ref(true);
+
+const forceRerender = async () => {
+    renderComponent.value = false;
+    await nextTick();
+    renderComponent.value = true;
+};
 
 const router = useRouter()
 
 const movieData = ref([]);
+const already = ref(false);
 const selectedMovie = ref(null);
 let open = false;
 const modal = ref();
@@ -23,20 +31,31 @@ const theTitles = store.titles
 function closeModal() {
     modal.value.style.display = "none"
     modalIn.value.style.display = "none"
-    console.log("close")
+    already.value = false
 }
 function addToCart() {
-    for (let i = -1; i < theTitles.length; i++) {
-        if (movieData.value[3] != theTitles[i] ) {
-            console.log("here")
-            console.log(movieData.value[3])
-            theTitles.push(movieData.value[3])
-            thePoster.push(movieData.value[0])
+
+    if (theTitles.length > 0) {
+
+        for (let i = 0; i <= theTitles.length; i++) {
+            if (movieData.value[3] === theTitles[theTitles.length - 1]) {
+                already.value = true
+            }
+            else {
+                theTitles.push(movieData.value[3])
+                thePoster.push(movieData.value[0])
+                forceRerender()
+            }
         }
     }
-
+    else {
+        theTitles.push(movieData.value[3])
+        thePoster.push(movieData.value[0])
+        forceRerender()
+    }
 }
 function getDetails(value) {
+    already.value = false
     if (open == false) {
         modal.value.style.display = "inline"
         modalIn.value.style.display = "inline"
@@ -61,9 +80,6 @@ function getDetails(value) {
         const trailers = data.videos.results.filter(
             (trailer) => trailer.type === "Trailer"
         )
-        if (data.budget == "0") {
-            data.budget = "unknown";
-        }
         let allGenres = "";
         let i = 0
         for (i in data.genres) {
@@ -76,20 +92,14 @@ function getDetails(value) {
         movieData.value[4] = data.tagline;
         movieData.value[5] = data.vote_average;
         movieData.value[6] = data.release_date;
-        movieData.value[7] = data.original_language;
-        movieData.value[8] = data.runtime;
         movieData.value[9] = data.overview;
-        movieData.value[10] = data.revenue;
-        movieData.value[11] = data.budget;
         movieData.value[12] = allGenres;
     })
 }
-
 </script>
-
 <template >
     <div class="home-container">
-        <Header class="storebkg" prop="show">
+        <Header class="storebkg" prop="show" v-if="renderComponent">
         </Header>
         <Hero class="store" id="gray" />
         <h1>Trending</h1>
@@ -101,35 +111,25 @@ function getDetails(value) {
         </div>
         <div class="modalContainer" ref="modalIn">
 
-            <img src="\src\assets\482185-200.png" @click="getDetails()" />
-            <button @click="addToCart()">Add To Cart</button>
+            <img class="x" src="\src\assets\482185-200.png" @click="getDetails()" />
+
             <h1 class="title">{{ movieData[3] }}</h1>
             <img class="modalImage" :src="movieData[0]" onerror="this.style.display='none'" />
             <iframe class="trailer" :src="movieData[1]" onerror="this.style.display='none'"></iframe>
+            <button class="add" @click="addToCart()">Add To Cart</button>
+            <h3 class="warn" v-if="already">Movie Already in Cart</h3>
             <img :src="movieData[2]" class="backdrop" onerror="this.style.display='none'">
-            <h3>Average Rating:</h3>
-            <h5>{{ movieData[5] }}/10</h5>
-            <br>
-            <h3>Release Date:</h3>
-            <h5>{{ movieData[6] }}</h5>
-            <br>
-            <h3>Budget:</h3>
-            <h5>${{ movieData[11] }}</h5>
-            <br>
-            <h3>Revenue: </h3>
-            <h5>${{ movieData[10] }}</h5>
-            <br>
-            <h3>Genres: </h3>
-            <h5>{{ movieData[12] }}</h5>
-            <br>
-            <h3>Original Language: </h3>
-            <h5>{{ movieData[7] }}</h5>
-            <br>
-            <h3>Runtime:</h3>
-            <h5>{{ movieData[8] }} mins</h5>
-            <div class="synopsisBox">
-                <h3>Synopsis: </h3>
-                <h4 frameBorder="0" class="info">{{ movieData[9] }}</h4>
+            <div class="infoBox">
+                <div class="synopsisBox">
+                    <h3>Synopsis: </h3>
+                    <h4 frameBorder="0" class="info">{{ movieData[9] }}</h4>
+                </div>
+                <h3>Average Rating:</h3>
+                <h5>{{ movieData[5]}}/10</h5>
+                <h3>Release Date:</h3>
+                <h5>{{ movieData[6]}}</h5>
+                <h3>Genres: </h3>
+                <h5>{{ movieData[12]}}</h5>
             </div>
             <div class="catchBox">
                 <h3>Catchphrase: </h3>
@@ -151,8 +151,6 @@ function getDetails(value) {
 .home-container {
     display: flex;
     flex-direction: column;
-
-
 }
 
 .movie-container {
@@ -165,7 +163,6 @@ function getDetails(value) {
     height: 40%;
     gap: 1%;
     border-radius: 20px;
-
 }
 
 .movie-container::-webkit-scrollbar {
@@ -186,26 +183,36 @@ function getDetails(value) {
     background: rgb(124, 147, 41);
 }
 
-
 .img {
     border-radius: 20px;
 }
 
+.img:hover {
+    border-style: outset;
+    border-color: rgb(177, 210, 59);
+}
+
+.title {
+    display: block;
+    color: rgb(177, 210, 59);
+    text-shadow: 2px 2px black;
+    position: absolute;
+    top: 0px;
+    left: 200px;
+}
+
 h1 {
     display: block;
-    color: white;
+    color: rgb(177, 210, 59);
+    text-shadow: 2px 2px black;
+    top: 170px;
+    left: 100px;
     position: absolute;
-    top: 20%;
-    left: 5%;
 }
 
 .modalContainer {
-    display: grid;
+    display: flex;
     position: fixed;
-    grid-template-columns: ;
-    grid-template-rows: ;
-    background-color: red;
-    position: absolute;
     top: 20%;
     left: 15%;
     height: 75%;
@@ -237,6 +244,30 @@ h1 {
 h5,
 h3,
 h4 {
-    background-color: white;
+    background-color: rgb(177, 210, 59);
+    font-size: 15px;
+}
+
+.modalImage {
+    height: 50%;
+}
+
+.warn {
+    color: red;
+}
+
+.x {
+    height: 20px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.add {
+    padding: 5px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-style: 2px;
+    border-radius: 10px;
+    background-color: rgb(177, 210, 59);
 }
 </style>

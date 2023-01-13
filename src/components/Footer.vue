@@ -14,7 +14,7 @@
         </div>
         <div class="block1">
             <h2>About</h2>
-             <h4>Blog</h4>
+            <h4>Blog</h4>
             <h4>Application</h4>
             <h4>FAQ</h4>
             <h4>Documentation</h4>
@@ -44,6 +44,7 @@
     user-select: none;
     -webkit-user-drag: none;
 }
+
 .container {
     opacity: 80%;
     height: 200px;
@@ -90,6 +91,7 @@ h1 {
     display: flex;
     justify-content: space-between;
 }
+
 .block1 {
     justify-content: flex-end;
     display: flex;
@@ -97,6 +99,7 @@ h1 {
     grid-column: 2 /span 1;
     grid-row: 1/ span 3;
 }
+
 .block2 {
     justify-content: flex-end;
     display: flex;
@@ -106,12 +109,14 @@ h1 {
     grid-column: 3 /span 1;
     grid-row: 1/ span 3;
 }
+
 .follow {
     grid-column: 4 /span 1;
     grid-row: 2 / span 1;
     position: relative;
     top: 40%;
 }
+
 div h1 {
     position: relative;
     top: 20px;

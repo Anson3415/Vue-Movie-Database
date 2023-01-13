@@ -6,20 +6,20 @@ import Checkout from "../views/Checkout.vue";
 
 const routes = [
   {
-    path: '/',
-    component: Home
+    path: "/",
+    component: Home,
   },
   {
-    path: '/login',
-    component: Login
+    path: "/login",
+    component: Login,
   },
   {
-    path: '/store',
-    component: Store
+    path: "/store",
+    component: Store,
   },
   {
-    path: '/checkout',
-    component: Checkout
+    path: "/checkout",
+    component: Checkout,
   },
 ];
 

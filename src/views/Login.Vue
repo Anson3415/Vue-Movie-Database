@@ -18,6 +18,5 @@ import LoginBox from "../components/LoginBox.vue";
 .home-container {
   display: flex;
   flex-direction: column;
-
 }
 </style>
